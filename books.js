@@ -21,14 +21,29 @@ function makeCall(){
       .then(function(allData) {
         var lowerCaseData = JSON.stringify(allData).toLowerCase()
         var formattedData = formatData(JSON.parse(lowerCaseData))
-        // data = generateOrderBooks(formattedData)
-        data = ["Bittrex: " + formattedData[0].bids[0].rate, "Poloniex: " + formattedData[1].bids[0].rate]
+        data = generateOrderBooks(formattedData)
+        // data = ["Bittrex: " + formattedData[0].bids[0].rate, "Poloniex: " + formattedData[1].bids[0].rate]
       });
       return JSON.stringify(data)
 }
 
 function generateOrderBooks(data){
-  var bidTable = ''
+  var bidTable = '<table class="table table-sm"><thead>'
+                + '<tr><th scope="col">Price (BTC)</th>'
+                + '<th scope="col">Bittrex</th>'
+                + '<th scope="col">Poloniex</th>'
+                + '<th scope="col">Total</th></tr></thead><tbody>'
+                + '<tr><th scope="row">.05</th><td>1</td><td>4</td><td>5</td></tr>'
+                + '</tbody></table>'
+
+  var askTable = '<table class="table table-sm"><thead>'
+                + '<tr><th scope="col">Price (BTC)</th>'
+                + '<th scope="col">Bittrex</th>'
+                + '<th scope="col">Poloniex</th>'
+                + '<th scope="col">Total</th></tr></thead><tbody>'
+                + '<tr><th scope="row">.05</th><td>1</td><td>4</td><td>5</td></tr>'
+                + '</tbody></table>'
+  return [bidTable, askTable]
 }
 
 function formatData(dataCollection){
