@@ -19,9 +19,27 @@ function requestAsync(url) {
 function makeCall(){
   Promise.all([requestAsync(url1), requestAsync(url2)])
       .then(function(allData) {
-        var poloniex = "Poloniex: " + allData[1]["bids"][0][0].toString()
-        var bittrex = "Bittrex: " + allData[0]["result"]["buy"][0]["Rate"].toString()
-        data = [poloniex, bittrex]
+        // var poloniex = "Poloniex: " + allData[1]["bids"][0][0].toString()
+        // var bittrex = "Bittrex: " + allData[0]["result"]["buy"][0]["Rate"].toString()
+        // data = [poloniex, bittrex]
+        formattedData = formatData(allData)
+        data = generateOrderBooks(formattedData)
       });
   return JSON.stringify(data)
+}
+
+function formatData(dataCollection){
+  result = {}
+  dataCollection.forEach(function(data, index){
+    if(index === 0){Object.assign(result, formatBittrex(data))}
+    if(index === 1){Object.assign(result, formatPoloniex(data))}
+  })
+  return result
+}
+
+function formatBittrex(data){
+  return {bittrex:
+            {bids: data["result"]["buy"],
+            asks: data["result"]["sell"]}
+          }
 }
