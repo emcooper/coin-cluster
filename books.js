@@ -27,9 +27,13 @@ function makeCall(){
       return JSON.stringify(data)
 }
 
+function generateOrderBooks(data){
+  var bidTable = ''
+}
+
 function formatData(dataCollection){
-  bittrexData = formatBittrex(dataCollection[0])
-  poloniexData = formatPoloniex(dataCollection[1])
+  var bittrexData = formatBittrex(dataCollection[0])
+  var poloniexData = formatPoloniex(dataCollection[1])
   return [bittrexData, poloniexData]
 }
 
