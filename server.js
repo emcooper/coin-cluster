@@ -20,6 +20,6 @@ wss.on('connection', (ws) => {
 
 setInterval(() => {
   wss.clients.forEach((client) => {
-    client.send(books.helloWorld());
+    client.send(books.makeCall());
   });
 }, 1000);
