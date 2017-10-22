@@ -29,4 +29,32 @@ describe('book functionality', function() {
       assert.equal(result.bids[0].rate, .05)
     })
   })
+
+  context('formatPoloniex function', function(){
+    it("returns a formatted object", function(){
+      sampleResponse = {
+          "asks": [
+              [
+                  ".04",
+                  3
+              ]
+          ],
+          "bids": [
+              [
+                  ".07",
+                  4
+              ]
+          ],
+          "isFrozen": "0",
+          "seq": 423840089
+      }
+      result = books.formatPoloniex(sampleResponse)
+      assert.isObject(result)
+      assert.equal(result.name, "Poloniex")
+      assert.isArray(result.bids)
+      assert.isArray(result.asks)
+      assert.equal(result.asks[0].quantity, 3)
+      assert.equal(result.bids[0].rate, .07)
+    })
+  })
 })
