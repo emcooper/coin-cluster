@@ -1,4 +1,4 @@
-module.exports = {makeCall}
+module.exports = {makeCall, formatBittrex}
 
 var request = require('request');
 
@@ -22,7 +22,8 @@ function makeCall(){
         // var poloniex = "Poloniex: " + allData[1]["bids"][0][0].toString()
         // var bittrex = "Bittrex: " + allData[0]["result"]["buy"][0]["Rate"].toString()
         // data = [poloniex, bittrex]
-        formattedData = formatData(allData)
+        lowerCaseData = JSON.stringify(data).toLowerCase()
+        formattedData = formatData(JSON.parse(lowerCaseData))
         data = generateOrderBooks(formattedData)
       });
   return JSON.stringify(data)
@@ -38,8 +39,7 @@ function formatData(dataCollection){
 }
 
 function formatBittrex(data){
-  return {bittrex:
-            {bids: data["result"]["buy"],
-            asks: data["result"]["sell"]}
-          }
+  return {name: "Bittrex",
+          bids: data["result"]["buy"],
+          asks: data["result"]["sell"]}
 }
