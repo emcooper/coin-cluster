@@ -3,7 +3,6 @@ const SocketServer = require('ws').Server;
 const path = require('path');
 const books = require('./books')
 
-
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
 

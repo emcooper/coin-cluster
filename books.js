@@ -19,7 +19,9 @@ function requestAsync(url) {
 function makeCall(){
   Promise.all([requestAsync(url1), requestAsync(url2)])
       .then(function(allData) {
-          data = allData[1]["asks"].toString()
+        var poloniex = "Poloniex: " + allData[1]["bids"][0][0].toString()
+        var bittrex = "Bittrex: " + allData[0]["result"]["buy"][0]["Rate"].toString()
+        data = poloniex + "<br>" + bittrex
       });
   return data
 }
