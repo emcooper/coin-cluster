@@ -21,7 +21,7 @@ function makeCall(){
       .then(function(allData) {
         var poloniex = "Poloniex: " + allData[1]["bids"][0][0].toString()
         var bittrex = "Bittrex: " + allData[0]["result"]["buy"][0]["Rate"].toString()
-        data = poloniex + "<br>" + bittrex
+        data = [poloniex, bittrex]
       });
-  return data
+  return JSON.stringify(data)
 }

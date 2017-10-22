@@ -1,12 +1,16 @@
 <html>
   <body>
-    <p id='server-time'></p>
+    <p id='bids'></p><br>
+    <p id='asks'></p>
     <script>
       var HOST = location.origin.replace(/^http/, 'ws')
       var ws = new WebSocket(HOST);
-      var el = document.getElementById('server-time');
+      var bids = document.getElementById('bids');
+      var asks = document.getElementById('asks');
       ws.onmessage = function (event) {
-        el.innerHTML = event.data;
+        data = JSON.parse(event.data)
+        bids.innerHTML = data[0];
+        asks.innerHTML = data[1];
       };
     </script>
   </body>
