@@ -20,4 +20,4 @@ setInterval(() => {
   wss.clients.forEach((client) => {
     client.send(books.makeCall());
   });
-}, 1000);
+}, 500);

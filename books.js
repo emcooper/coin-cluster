@@ -75,8 +75,8 @@ function bidRows(data){
 function combineData(data, orderType){
   let prices = []
   data.forEach(function(exchange){
-    exchange.bids.forEach(function(bid){
-      prices.push(bid.rate)
+    exchange[orderType].forEach(function(order){
+      prices.push(order.rate)
     })
   })
   let rowData = {}
@@ -87,8 +87,8 @@ function combineData(data, orderType){
     rowData[price] = {"bittrex": 0, "poloniex": 0}
   })
   data.forEach(function(exchange){
-    exchange.bids.forEach(function(bid){
-      rowData[bid.rate][exchange.name] += bid.quantity
+    exchange[orderType].forEach(function(order){
+      rowData[order.rate][exchange.name] += order.quantity
     })
   })
   return rowData
