@@ -39,20 +39,20 @@ function generateOrderBooks(data){
   var bidTable = '<table class="table table-sm">'
                 + tableHeaders
                 + '<tbody>'
-                // + '<tr><th scope="row">.05</th><td>1</td><td>4</td><td>5</td></tr>'
                 + bidRows(data)
                 + '</tbody></table>'
 
   var askTable = '<table class="table table-sm">'
                 + tableHeaders
-                + '<tbody><tr><th scope="row">.05</th><td>1</td><td>4</td><td>5</td></tr>'
+                + '<tbody>'
+                + askRows(data)
                 + '</tbody></table>'
   return [bidTable, askTable]
 }
 
-function bidRows(data){
+function askRows(data){
   rows = ""
-  combined = combineData(data)
+  combined = combineData(data, "asks")
   Object.keys(combined).forEach(function(price){
     rows += '<tr><th scope="row">' + price + '</th>'
           + '<td>' + combined[price].bittrex + '</td>'
@@ -61,7 +61,18 @@ function bidRows(data){
   return rows
 }
 
-function combineData(data){
+function bidRows(data){
+  rows = ""
+  combined = combineData(data, "bids")
+  Object.keys(combined).forEach(function(price){
+    rows += '<tr><th scope="row">' + price + '</th>'
+          + '<td>' + combined[price].bittrex + '</td>'
+          + '<td>' + combined[price].poloniex + '</td>'
+  })
+  return rows
+}
+
+function combineData(data, orderType){
   let prices = []
   data.forEach(function(exchange){
     exchange.bids.forEach(function(bid){
@@ -69,7 +80,10 @@ function combineData(data){
     })
   })
   let rowData = {}
-  prices.sort().reverse().forEach(function(price){
+  let sortedPrices = null
+  if(orderType === "bids"){sortedPrices = prices.sort().reverse()}
+  if(orderType === "asks"){sortedPrices = prices.sort()}
+  sortedPrices.forEach(function(price){
     rowData[price] = {"bittrex": 0, "poloniex": 0}
   })
   data.forEach(function(exchange){
