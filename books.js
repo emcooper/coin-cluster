@@ -4,8 +4,8 @@ const request = require('request');
 const tableHeaders = '<thead><tr><th scope="col">Price (BTC)</th>'
                     + '<th scope="col">Bittrex</th>'
                     + '<th scope="col">Poloniex</th>'
-                    + '<th scope="col">Total</th>'
-                    + '<th scope="col">Sum</th></tr></thead>'
+                    // + '<th scope="col">Total</th>'
+                    // + '<th scope="col">Sum</th></tr></thead>'
 
 
 let url1 = "https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-ETH&type=both"
@@ -52,27 +52,32 @@ function generateOrderBooks(data){
 
 function bidRows(data){
   rows = ""
-  combineData(data).forEach(function(pricePoint){
-    rows += 
+  combined = combineData(data)
+  Object.keys(combined).forEach(function(price){
+    rows += '<tr><th scope="row">' + price + '</th>'
+          + '<td>' + combined[price].bittrex + '</td>'
+          + '<td>' + combined[price].poloniex + '</td>'
   })
+  return rows
 }
 
-def combineData(data){
+function combineData(data){
   let prices = []
   data.forEach(function(exchange){
     exchange.bids.forEach(function(bid){
-      prices.push(bid.quantity)
+      prices.push(bid.rate)
     })
   })
   let rowData = {}
   prices.sort().reverse().forEach(function(price){
-    rowData[price] = {"Bittrex": 0, "Poloniex": 0}
+    rowData[price] = {"bittrex": 0, "poloniex": 0}
   })
   data.forEach(function(exchange){
     exchange.bids.forEach(function(bid){
       rowData[bid.rate][exchange.name] += bid.quantity
     })
   })
+  return rowData
 }
 
 
@@ -84,9 +89,9 @@ function formatData(dataCollection){
 }
 
 function formatBittrex(data){
-  return {name: "Bittrex",
-          bids: data["result"]["buy"],
-          asks: data["result"]["sell"]}
+  return {name: "bittrex",
+          bids: data["result"]["buy"].slice(0, 50),
+          asks: data["result"]["sell"].slice(0, 50)}
 }
 
 function formatPoloniex(data){
@@ -98,7 +103,7 @@ function formatPoloniex(data){
       return {rate: bid[0],
               quantity: bid[1]}
     })
-    return {name: "Poloniex",
+    return {name: "poloniex",
             bids: bids,
             asks: asks}
 }
