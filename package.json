@@ -17,7 +17,8 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "utf-8-validate": "3.0.3",
-    "ws": "3.2.0"
+    "ws": "3.2.0",
+    "wscat": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
