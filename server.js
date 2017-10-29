@@ -18,6 +18,6 @@ wss.on('connection', (ws) => {
 
 setInterval(() => {
   wss.clients.forEach((client) => {
-    client.send(books.makeCall());
+    client.send(books.getOrders());
   });
 }, 500);
