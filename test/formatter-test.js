@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-const books = require('../books')
+const formatter = require('../lib/formatter')
 
 describe('book functionality', function() {
   context('formatBittrex function', function(){
@@ -20,9 +20,9 @@ describe('book functionality', function() {
                     }]
                   }
       }
-      result = books.formatBittrex(sampleResponse)
+      result = formatter.formatBittrex(sampleResponse)
       assert.isObject(result)
-      assert.equal(result.name, "Bittrex")
+      assert.equal(result.name, "bittrex")
       assert.isArray(result.bids)
       assert.isArray(result.asks)
       assert.equal(result.asks[0].quantity, 4)
@@ -48,9 +48,9 @@ describe('book functionality', function() {
           "isFrozen": "0",
           "seq": 423840089
       }
-      result = books.formatPoloniex(sampleResponse)
+      result = formatter.formatPoloniex(sampleResponse)
       assert.isObject(result)
-      assert.equal(result.name, "Poloniex")
+      assert.equal(result.name, "poloniex")
       assert.isArray(result.bids)
       assert.isArray(result.asks)
       assert.equal(result.asks[0].quantity, 3)

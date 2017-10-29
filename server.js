@@ -1,7 +1,7 @@
 const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
-const books = require('./books')
+const books = require('./lib/books')
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
 
@@ -18,6 +18,6 @@ wss.on('connection', (ws) => {
 
 setInterval(() => {
   wss.clients.forEach((client) => {
-    client.send(books.makeCall());
+    client.send(books.getOrders());
   });
 }, 500);
