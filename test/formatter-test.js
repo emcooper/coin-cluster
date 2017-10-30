@@ -1,6 +1,21 @@
 const assert = require("chai").assert;
 const formatter = require('../lib/formatter')
 
+const sampleData = [{ name: "poloniex",
+                    bids:
+                     [ {quantity: 4, rate:  .05},
+                       {quantity: 23, rate: .07},],
+                     asks:
+                     [ {quantity: 5, rate: .02},
+                       {quantity: 6, rate: .03},]},
+                 { name: "bittrex",
+                     bids:
+                      [ {quantity: 5, rate: 0.06},
+                        {quantity: 44, rate: 0.04},],
+                      asks:
+                      [ {quantity: 2, rate: 0.04},
+                        {quantity: 8, rate: 0.01},]}]
+
 describe("formatting functionality", function() {
   context("formatBittrex function", function(){
     it("returns a correctly formatted object", function(){
@@ -87,21 +102,6 @@ describe("formatting functionality", function() {
 
   context ("placeholderRowData function", function(){
     it("returns object for each price point with 0 volume placeholders", function(){
-      let sampleData = [{ name: "poloniex",
-                          bids:
-                           [ {quantity: 4, rate:  .05},
-                             {quantity: 23, rate: .07},],
-                           asks:
-                           [ {quantity: 5, rate: .02},
-                             {quantity: 6, rate: .03},]},
-                       { name: "bittrex",
-                           bids:
-                            [ {quantity: 5, rate: 0.06},
-                              {quantity: 44, rate: 0.04},],
-                            asks:
-                            [ {quantity: 2, rate: 0.04},
-                              {quantity: 8, rate: 0.01},]}]
-
       let bidResult = formatter.placeholderRowData(sampleData, "bids")
       let askResult = formatter.placeholderRowData(sampleData, "asks")
 
@@ -123,21 +123,6 @@ describe("formatting functionality", function() {
 
   context ("sortPrices function", function(){
     it("sorts prices in ascending order for asks; descending order for bids", function(){
-      let sampleData = [{ name: "poloniex",
-                          bids:
-                           [ {quantity: 4, rate:  .05},
-                             {quantity: 23, rate: .07},],
-                           asks:
-                           [ {quantity: 5, rate: .02},
-                             {quantity: 6, rate: .03},]},
-                       { name: "bittrex",
-                           bids:
-                            [ {quantity: 5, rate: 0.06},
-                              {quantity: 44, rate: 0.04},],
-                            asks:
-                            [ {quantity: 2, rate: 0.04},
-                              {quantity: 8, rate: 0.01},]}]
-
       let bidResult = formatter.sortPrices(sampleData, "bids")
       let askResult = formatter.sortPrices(sampleData, "asks")
 
