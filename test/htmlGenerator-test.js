@@ -44,4 +44,17 @@ describe("htmlGenerator functionality", function(){
       assert.isUndefined(noOverlapResult)
     })
   })
+
+  context("bidHighlighting function", function(){
+    it("returns bg-warning class if there is overlap", function(){
+      let overlapResult = html.bidHighlighting(.06, sampleData)
+
+      assert.equal(overlapResult, "bg-warning")
+    })
+    it("id undefined if there is no overlap", function(){
+      let noOverlapResult = html.bidHighlighting(.005, sampleData)
+
+      assert.isUndefined(noOverlapResult)
+    })
+  })
 })
