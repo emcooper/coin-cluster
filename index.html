@@ -24,14 +24,14 @@
     </div>
     <script>
       let HOST = location.origin.replace(/^http/, 'ws')
-      let ws = new WebSocket(HOST);
-      let bids = document.getElementById('bids');
-      let asks = document.getElementById('asks');
+      let ws = new WebSocket(HOST)
+      let bids = document.getElementById('bids')
+      let asks = document.getElementById('asks')
       ws.onmessage = function (event) {
         data = JSON.parse(event.data)
-        bids.innerHTML = data[0];
-        asks.innerHTML = data[1];
-      };
+        bids.innerHTML = data[0]
+        asks.innerHTML = data[1]
+      }
     </script>
   </body>
 </html>
