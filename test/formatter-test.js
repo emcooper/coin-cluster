@@ -1,8 +1,8 @@
-const assert = require('chai').assert;
+const assert = require("chai").assert;
 const formatter = require('../lib/formatter')
 
-describe('formatting functionality', function() {
-  context('formatBittrex function', function(){
+describe("formatting functionality", function() {
+  context("formatBittrex function", function(){
     it("returns a correctly formatted object", function(){
       let sampleResponse = {
         "success": true,
@@ -30,7 +30,7 @@ describe('formatting functionality', function() {
     })
   })
 
-  context('formatPoloniex function', function(){
+  context("formatPoloniex function", function(){
     it("returns a correctly formatted object", function(){
       let sampleResponse = {
           "asks": [
@@ -87,14 +87,14 @@ describe('formatting functionality', function() {
 
   context ("placeholderRowData function", function(){
     it("returns object for each price point with 0 volume placeholders", function(){
-      let sampleData = [{ name: 'poloniex',
+      let sampleData = [{ name: "poloniex",
                           bids:
                            [ {quantity: 4, rate:  .05},
                              {quantity: 23, rate: .07},],
                            asks:
                            [ {quantity: 5, rate: .02},
                              {quantity: 6, rate: .03},]},
-                       { name: 'bittrex',
+                       { name: "bittrex",
                            bids:
                             [ {quantity: 5, rate: 0.06},
                               {quantity: 44, rate: 0.04},],
@@ -106,31 +106,31 @@ describe('formatting functionality', function() {
       let askResult = formatter.placeholderRowData(sampleData, "asks")
 
       assert.isObject(bidResult)
-      assert.deepEqual(Object.keys(bidResult), [ '0.07', '0.06', '0.05', '0.04' ])
-      assert.equal(bidResult['0.07']['poloniex'], 0)
-      assert.equal(bidResult['0.07']['bittrex'], 0)
-      assert.equal(bidResult['0.04']['poloniex'], 0)
-      assert.equal(bidResult['0.04']['bittrex'], 0)
+      assert.deepEqual(Object.keys(bidResult), [ "0.07", "0.06", "0.05", "0.04" ])
+      assert.equal(bidResult["0.07"]["poloniex"], 0)
+      assert.equal(bidResult["0.07"]["bittrex"], 0)
+      assert.equal(bidResult["0.04"]["poloniex"], 0)
+      assert.equal(bidResult["0.04"]["bittrex"], 0)
 
       assert.isObject(askResult)
-      assert.deepEqual(Object.keys(askResult), [ '0.01', '0.02', '0.03', '0.04' ])
-      assert.equal(askResult['0.01']['poloniex'], 0)
-      assert.equal(askResult['0.01']['bittrex'], 0)
-      assert.equal(askResult['0.04']['poloniex'], 0)
-      assert.equal(askResult['0.04']['bittrex'], 0)
+      assert.deepEqual(Object.keys(askResult), [ "0.01", "0.02", "0.03", "0.04" ])
+      assert.equal(askResult["0.01"]["poloniex"], 0)
+      assert.equal(askResult["0.01"]["bittrex"], 0)
+      assert.equal(askResult["0.04"]["poloniex"], 0)
+      assert.equal(askResult["0.04"]["bittrex"], 0)
     })
   })
 
   context ("sortPrices function", function(){
     it("sorts prices in ascending order for asks; descending order for bids", function(){
-      let sampleData = [{ name: 'poloniex',
+      let sampleData = [{ name: "poloniex",
                           bids:
                            [ {quantity: 4, rate:  .05},
                              {quantity: 23, rate: .07},],
                            asks:
                            [ {quantity: 5, rate: .02},
                              {quantity: 6, rate: .03},]},
-                       { name: 'bittrex',
+                       { name: "bittrex",
                            bids:
                             [ {quantity: 5, rate: 0.06},
                               {quantity: 44, rate: 0.04},],
