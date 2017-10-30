@@ -18,10 +18,10 @@
       </div>
     </div>
     <script>
-      var HOST = location.origin.replace(/^http/, 'ws')
-      var ws = new WebSocket(HOST);
-      var bids = document.getElementById('bids');
-      var asks = document.getElementById('asks');
+      let HOST = location.origin.replace(/^http/, 'ws')
+      let ws = new WebSocket(HOST);
+      let bids = document.getElementById('bids');
+      let asks = document.getElementById('asks');
       ws.onmessage = function (event) {
         data = JSON.parse(event.data)
         bids.innerHTML = data[0];
