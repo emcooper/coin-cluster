@@ -104,7 +104,7 @@ describe('formatting functionality', function() {
 
       let bidResult = formatter.placeholderRowData(sampleData, "bids")
       let askResult = formatter.placeholderRowData(sampleData, "asks")
-      
+
       assert.isObject(bidResult)
       assert.deepEqual(Object.keys(bidResult), [ '0.07', '0.06', '0.05', '0.04' ])
       assert.equal(bidResult['0.07']['poloniex'], 0)
@@ -118,6 +118,31 @@ describe('formatting functionality', function() {
       assert.equal(askResult['0.01']['bittrex'], 0)
       assert.equal(askResult['0.04']['poloniex'], 0)
       assert.equal(askResult['0.04']['bittrex'], 0)
+    })
+  })
+
+  context ("sortPrices function", function(){
+    it("sorts prices in ascending order for asks; descending order for bids", function(){
+      let sampleData = [{ name: 'poloniex',
+                          bids:
+                           [ {quantity: 4, rate:  .05},
+                             {quantity: 23, rate: .07},],
+                           asks:
+                           [ {quantity: 5, rate: .02},
+                             {quantity: 6, rate: .03},]},
+                       { name: 'bittrex',
+                           bids:
+                            [ {quantity: 5, rate: 0.06},
+                              {quantity: 44, rate: 0.04},],
+                            asks:
+                            [ {quantity: 2, rate: 0.04},
+                              {quantity: 8, rate: 0.01},]}]
+
+      let bidResult = formatter.sortPrices(sampleData, "bids")
+      let askResult = formatter.sortPrices(sampleData, "asks")
+
+      assert.deepEqual(bidResult, [ 0.07, 0.06, 0.05, 0.04 ])
+      assert.deepEqual(askResult, [ 0.01, 0.02, 0.03, 0.04 ])
     })
   })
 })
