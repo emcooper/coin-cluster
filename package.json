@@ -16,6 +16,7 @@
     "location-origin": "^1.1.4",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
+    "socket.io": "^2.0.4",
     "utf-8-validate": "3.0.3",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3",
