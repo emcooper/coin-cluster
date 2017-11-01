@@ -18,8 +18,7 @@ server.listen(port, () => console.log(`Listening on port ${port}`))
 
 const io = socketIo(server)
 function getApiAndEmit(socket){
-  socket.emit("FromAPI", books.getOrders())
-  console.log(books.getOrders())
+  socket.emit("bids", books.getOrders())
 }
 
 // const wss = new SocketServer({ server })
