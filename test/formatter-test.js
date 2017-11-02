@@ -107,17 +107,17 @@ describe('formatting functionality', function() {
 
       assert.isObject(bidResult)
       assert.deepEqual(Object.keys(bidResult), [ '0.07', '0.06', '0.05', '0.04' ])
-      assert.equal(bidResult['0.07']['poloniex'], 0)
-      assert.equal(bidResult['0.07']['bittrex'], 0)
-      assert.equal(bidResult['0.04']['poloniex'], 0)
-      assert.equal(bidResult['0.04']['bittrex'], 0)
+      assert.equal(bidResult['0.07']['volumes']['poloniex'], 0)
+      assert.equal(bidResult['0.07']['volumes']['bittrex'], 0)
+      assert.equal(bidResult['0.04']['volumes']['poloniex'], 0)
+      assert.equal(bidResult['0.04']['volumes']['bittrex'], 0)
 
       assert.isObject(askResult)
       assert.deepEqual(Object.keys(askResult), [ '0.01', '0.02', '0.03', '0.04' ])
-      assert.equal(askResult['0.01']['poloniex'], 0)
-      assert.equal(askResult['0.01']['bittrex'], 0)
-      assert.equal(askResult['0.04']['poloniex'], 0)
-      assert.equal(askResult['0.04']['bittrex'], 0)
+      assert.equal(askResult['0.01']['volumes']['poloniex'], 0)
+      assert.equal(askResult['0.01']['volumes']['bittrex'], 0)
+      assert.equal(askResult['0.04']['volumes']['poloniex'], 0)
+      assert.equal(askResult['0.04']['volumes']['bittrex'], 0)
     })
   })
 
@@ -128,6 +128,32 @@ describe('formatting functionality', function() {
 
       assert.deepEqual(bidResult, [ 0.07, 0.06, 0.05, 0.04 ])
       assert.deepEqual(askResult, [ 0.01, 0.02, 0.03, 0.04 ])
+    })
+  })
+
+  context('askHighlighting function', function(){
+    it('returns bg-warning class if there is overlap', function(){
+      let overlapResult = formatter.askHighlighting(.06, sampleData)
+
+      assert.equal(overlapResult, 'bg-warning')
+    })
+    it('is undefined if there is no overlap', function(){
+      let noOverlapResult = formatter.askHighlighting(.08, sampleData)
+
+      assert.isUndefined(noOverlapResult)
+    })
+  })
+
+  context('bidHighlighting function', function(){
+    it('returns bg-warning class if there is overlap', function(){
+      let overlapResult = formatter.bidHighlighting(.06, sampleData)
+
+      assert.equal(overlapResult, 'bg-warning')
+    })
+    it('is undefined if there is no overlap', function(){
+      let noOverlapResult = formatter.bidHighlighting(.005, sampleData)
+
+      assert.isUndefined(noOverlapResult)
     })
   })
 })
