@@ -17,11 +17,7 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "socket.io": "^2.0.4",
-    "utf-8-validate": "3.0.3",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.3",
-    "ws": "3.2.0",
-    "wscat": "^2.0.1"
+    "utf-8-validate": "3.0.3"
   },
   "devDependencies": {
     "chai": "^4.1.2",
