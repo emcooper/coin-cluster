@@ -12,7 +12,8 @@ server.listen(port, () => console.log(`Listening on port ${port}`))
 
 const io = socketIo(server)
 function getApiAndEmit(socket){
-  socket.emit("orders", books.getOrders())
+  let market = socket.handshake.query.market
+  socket.emit("orders", books.getOrders(market))
 }
 
 let interval
@@ -21,7 +22,7 @@ io.on("connection", socket => {
   if (interval) {
     clearInterval(interval)
   }
-  interval = setInterval(() => getApiAndEmit(socket), 1000)
+  interval = setInterval(() => getApiAndEmit(socket), 500)
   socket.on("disconnect", () => {
     console.log("Client disconnected")
   })
