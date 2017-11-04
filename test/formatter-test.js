@@ -73,6 +73,40 @@ describe('formatting functionality', function() {
     })
   })
 
+  context('formatHitbtc function', function(){
+    it('returns a correctly formatted object', function(){
+      let sampleResponse = {
+          "ask": [
+              {
+                  "price": "0.04",
+                  "size": "5"
+              },
+              {
+                  "price": "0.05",
+                  "size": "88"
+              }
+          ],
+          "bid": [
+              {
+                  "price": "0.04",
+                  "size": "2"
+              },
+              {
+                  "price": "0.06",
+                  "size": "0.1"
+              }
+          ]
+      }
+      let result = formatter.formatHitbtc(sampleResponse)
+      assert.isObject(result)
+      assert.equal(result.name, 'hitbtc')
+      assert.isArray(result.bids)
+      assert.isArray(result.asks)
+      assert.equal(result.asks[0].quantity, 5)
+      assert.equal(result.bids[0].rate, .04)
+    })
+  })
+
   context ('downCase function', function(){
     it('converts json response to lower case object', function(){
       let sampleResponse = {
