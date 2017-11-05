@@ -73,6 +73,72 @@ describe('formatting functionality', function() {
     })
   })
 
+  context('formatHitbtc function', function(){
+    it('returns a correctly formatted object', function(){
+      let sampleResponse = {
+          "ask": [
+              {
+                  "price": "0.04",
+                  "size": "5"
+              },
+              {
+                  "price": "0.05",
+                  "size": "88"
+              }
+          ],
+          "bid": [
+              {
+                  "price": "0.04",
+                  "size": "2"
+              },
+              {
+                  "price": "0.06",
+                  "size": "0.1"
+              }
+          ]
+      }
+      let result = formatter.formatHitbtc(sampleResponse)
+      assert.isObject(result)
+      assert.equal(result.name, 'hitbtc')
+      assert.isArray(result.bids)
+      assert.isArray(result.asks)
+      assert.equal(result.asks[0].quantity, 5)
+      assert.equal(result.bids[0].rate, .04)
+    })
+  })
+
+  context('formatBitstamp function', function(){
+    it('returns a correctly formatted object', function(){
+      let sampleResponse = {
+    "timestamp": "1509907586",
+    "bids": [
+        [
+            "0.03",
+            "0.002"
+        ],
+        [
+            "0.0391",
+            "33"
+        ]],
+    "asks": [
+       [
+           "0.03917",
+           "33"
+       ],
+       [
+           "0.039179",
+           "7"
+       ]]}
+      let result = formatter.formatBitstamp(sampleResponse)
+      assert.isObject(result)
+      assert.equal(result.name, 'bitstamp')
+      assert.isArray(result.bids)
+      assert.isArray(result.asks)
+      assert.equal(result.asks[0].quantity, 33)
+      assert.equal(result.bids[0].rate, .03)
+    })
+  })
+
   context ('downCase function', function(){
     it('converts json response to lower case object', function(){
       let sampleResponse = {
