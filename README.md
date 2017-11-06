@@ -73,7 +73,7 @@ src/App.js line:8
 
 ### To deploy the react client:
 
-#### Step 1: Replace `homepage` to `package.json`
+#### Step 1: Replace `homepage` in `package.json`
 
 Open your `package.json` and replace the `homepage` field with your own github repo address:
 
