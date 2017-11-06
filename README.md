@@ -7,7 +7,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Node.js (https://nodejs.org/en/)
+[Node.js] (https://nodejs.org/en/)
 
 ### Installing
 
@@ -19,7 +19,7 @@ Node.js (https://nodejs.org/en/)
 npm install
 ```
 
-3. Clone the React client app (https://github.com/emcooper/coin-cluster-client)
+3. Clone the [React client app](https://github.com/emcooper/coin-cluster-client)
 
 4. Install node packages on the client app. 
 
@@ -56,7 +56,7 @@ mocha test
 
 ## Deployment
 
-To deploy the server-side app:
+### To deploy the server-side app:
 ```
 heroku create app-name
 git push heroku master
@@ -71,7 +71,7 @@ src/App.js line:8
 
 ```
 
-To deploy the react client:
+### To deploy the react client:
 
 #### Step 1: Replace `homepage` to `package.json`
 
@@ -98,11 +98,11 @@ Finally, make sure **GitHub Pages** option in your GitHub project settings is se
 
 ## Built With
 
-Server-side App
+Server-side Websocket App
 * [Node.js](https://nodejs.org/en/) 
 * [Express](https://expressjs.com/) 
 
-React Frontend App
+Client-side React App
 * [React](https://reactjs.org/) 
 * [Bootstrap](http://getbootstrap.com/) 
 
@@ -179,7 +179,7 @@ further defined and clarified by project maintainers.
 #### Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at ellencooper74@gmail.com. All
+reported by contacting the project owner at ellencooper74@gmail.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
@@ -200,7 +200,7 @@ available at [http://contributor-covenant.org/version/1/4][version]
 
 ## Authors
 
-* **Ellen Cooper** - *Initial work* - [PurpleBooth](https://github.com/emcooper)
+* **Ellen Cooper** - [emcooper](https://github.com/emcooper)
 
 ## License
 
